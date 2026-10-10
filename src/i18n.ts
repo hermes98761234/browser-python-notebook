@@ -1,0 +1,77 @@
+import type { Lang } from './lib/settings'
+
+export type T = (s: string, ...args: (string | number)[]) => string
+
+/** English source string -> Ukrainian. `{0}`, `{1}` are placeholders for interpolated values. */
+export const UK: Record<string, string> = {
+  'Python Notebook': 'Python-ноутбук',
+  'Notebook name': 'Назва ноутбука',
+  'Python in your browser: a Jupyter-style notebook powered by Pyodide. Your code and data never leave this page.':
+    'Python у браузері: ноутбук у стилі Jupyter на Pyodide. Ваш код і дані не залишають цієї сторінки.',
+  'Source on GitHub': 'Код на GitHub',
+  'Python runtime is loaded from the jsDelivr CDN.': 'Середовище Python завантажується з CDN jsDelivr.',
+  Theme: 'Тема',
+  Language: 'Мова',
+  System: 'Системна',
+  Light: 'Світла',
+  Dark: 'Темна',
+  Run: 'Запустити',
+  'Run cell (Shift+Enter)': 'Запустити комірку (Shift+Enter)',
+  'Run all': 'Запустити все',
+  Interrupt: 'Зупинити',
+  'Interrupt (restarts the kernel)': 'Зупинити (перезапускає ядро)',
+  Restart: 'Перезапуск',
+  'Restart kernel': 'Перезапустити ядро',
+  'Restart and run all': 'Перезапустити й запустити все',
+  'Execution interrupted: the kernel was restarted, variables are lost.': 'Виконання перервано: ядро перезапущено, змінні втрачено.',
+  Code: 'Код',
+  Markdown: 'Markdown',
+  '+ Code': '+ Код',
+  '+ Markdown': '+ Markdown',
+  'Add code cell below': 'Додати комірку з кодом нижче',
+  'Clear outputs': 'Очистити виводи',
+  'Clear output': 'Очистити вивід',
+  'Delete cell': 'Видалити комірку',
+  'Move up': 'Вгору',
+  'Move down': 'Вниз',
+  'Cell type': 'Тип комірки',
+  'Cell tools': 'Інструменти комірки',
+  'Cell {0}': 'Комірка {0}',
+  'Code cell {0}': 'Комірка коду {0}',
+  'Markdown cell {0}': 'Комірка Markdown {0}',
+  'Execution count': 'Лічильник виконань',
+  'Double-click to edit': 'Двічі клацніть, щоб редагувати',
+  Render: 'Показати',
+  Open: 'Відкрити',
+  'Open .ipynb': 'Відкрити .ipynb',
+  Save: 'Зберегти',
+  'Save as .ipynb': 'Зберегти як .ipynb',
+  New: 'Новий',
+  Examples: 'Приклади',
+  'Load example…': 'Завантажити приклад…',
+  Files: 'Файли',
+  Upload: 'Завантажити',
+  Download: 'Скачати',
+  Delete: 'Видалити',
+  'No files yet.': 'Файлів ще немає.',
+  'Files live in the in-browser file system (/home/pyodide). Read them from Python with open() or pandas.read_csv().':
+    'Файли зберігаються у файловій системі браузера (/home/pyodide). Читайте їх у Python через open() або pandas.read_csv().',
+  'Replace the current notebook? Unsaved changes will be lost.': 'Замінити поточний ноутбук? Незбережені зміни буде втрачено.',
+  'Could not open file: {0}': 'Не вдалося відкрити файл: {0}',
+  'Uploaded {0}': 'Завантажено {0}',
+  'Upload failed: {0}': 'Помилка завантаження: {0}',
+  'Download failed: {0}': 'Помилка скачування: {0}',
+  Saved: 'Збережено',
+  'Starting Python…': 'Запуск Python…',
+  'Downloading Python runtime…': 'Завантаження середовища Python…',
+  Idle: 'Готово',
+  Busy: 'Виконується',
+  'Failed to start: {0}': 'Не вдалося запустити: {0}',
+  'Autosave is unavailable in this browser.': 'Автозбереження недоступне в цьому браузері.',
+  'Unnamed': 'Без назви',
+}
+
+export function tr(lang: Lang, s: string, ...args: (string | number)[]): string {
+  const src = lang === 'uk' ? (UK[s] ?? s) : s
+  return src.replace(/\{(\d+)\}/g, (_, i: string) => String(args[+i]))
+}
